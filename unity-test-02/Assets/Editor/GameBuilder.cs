@@ -9,7 +9,7 @@ public class GameBuilder : MonoBehaviour
     {
         BuildPlayerOptions buildPlayerOptions = new BuildPlayerOptions();
         buildPlayerOptions.scenes = new[] { "Assets/Scenes/SampleScene.unity" };
-        buildPlayerOptions.locationPathName = "build/macOS/somegame.app" ;
+        buildPlayerOptions.locationPathName = "build/macOS/jump-game.app" ;
         buildPlayerOptions.target = BuildTarget.StandaloneOSX;
         buildPlayerOptions.options = BuildOptions.None;
 
