@@ -78,9 +78,9 @@ public class GameBuilder : MonoBehaviour
     {
 
           // Fix for incompatible color space with graphics API
-        PlayerSettings.colorSpace = ColorSpace.Gamma;
-        PlayerSettings.SetUseDefaultGraphicsAPIs(BuildTarget.Android, false);
-        PlayerSettings.SetGraphicsAPIs(BuildTarget.Android, new[] { GraphicsDeviceType.OpenGLES3 });
+        //PlayerSettings.colorSpace = ColorSpace.Gamma;
+        //PlayerSettings.SetUseDefaultGraphicsAPIs(BuildTarget.Android, false);
+        //PlayerSettings.SetGraphicsAPIs(BuildTarget.Android, new[] { GraphicsDeviceType.OpenGLES3 });
 
         BuildPlayerOptions buildPlayerOptions = new BuildPlayerOptions();
         buildPlayerOptions.scenes = new[] { "Assets/Scenes/SampleScene.unity" };
@@ -108,9 +108,9 @@ public class GameBuilder : MonoBehaviour
         EditorUserBuildSettings.SwitchActiveBuildTarget(BuildTargetGroup.Android, BuildTarget.Android);
 
         // Fix for incompatible color space with graphics API
-        PlayerSettings.colorSpace = ColorSpace.Gamma;
-        PlayerSettings.SetUseDefaultGraphicsAPIs(BuildTarget.Android, false);
-        PlayerSettings.SetGraphicsAPIs(BuildTarget.Android, new[] { GraphicsDeviceType.OpenGLES3 });
+        //PlayerSettings.colorSpace = ColorSpace.Gamma;
+        //PlayerSettings.SetUseDefaultGraphicsAPIs(BuildTarget.Android, false);
+        //PlayerSettings.SetGraphicsAPIs(BuildTarget.Android, new[] { GraphicsDeviceType.OpenGLES3 });
 
         BuildPlayerOptions buildPlayerOptions = new BuildPlayerOptions();
         buildPlayerOptions.scenes = new[] { "Assets/Scenes/SampleScene.unity" };
