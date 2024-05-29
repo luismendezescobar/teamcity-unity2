@@ -73,7 +73,7 @@ public class GameBuilder : MonoBehaviour
     }
 
     [MenuItem("Build/Build Android")]
-    public static void PerformAndroidBuild()
+    public static void PerformAndroidBuildApk()
     {
         BuildPlayerOptions buildPlayerOptions = new BuildPlayerOptions();
         buildPlayerOptions.scenes = new[] { "Assets/Scenes/SampleScene.unity" };
@@ -94,5 +94,29 @@ public class GameBuilder : MonoBehaviour
             Debug.Log("Build failed");
         }
     }
+   [MenuItem("Build/Build Android")]
+    public static void PerformAndroidBuildAab()
+    {
+        BuildPlayerOptions buildPlayerOptions = new BuildPlayerOptions();
+        buildPlayerOptions.scenes = new[] { "Assets/Scenes/SampleScene.unity" };
+        buildPlayerOptions.locationPathName = "build/Android/jump-game.aab";
+        buildPlayerOptions.target = BuildTarget.Android;
+        buildPlayerOptions.options = BuildOptions.None;
 
+        // Set to build AAB
+        EditorUserBuildSettings.buildAppBundle = true;
+
+        BuildReport report = BuildPipeline.BuildPlayer(buildPlayerOptions);
+        BuildSummary summary = report.summary;
+
+        if (summary.result == BuildResult.Succeeded)
+        {
+            Debug.Log("Build succeeded: " + summary.totalSize + " bytes");
+        }
+
+        if (summary.result == BuildResult.Failed)
+        {
+            Debug.Log("Build failed");
+        }
+    }
 }
