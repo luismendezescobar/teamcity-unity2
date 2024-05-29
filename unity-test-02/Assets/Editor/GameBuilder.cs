@@ -73,7 +73,7 @@ public class GameBuilder : MonoBehaviour
     }
 
     [MenuItem("Build/Build Android")]
-    public static void PerformAndroidBuildApk()
+    public static void PerformAndroidBuild()
     {
         BuildPlayerOptions buildPlayerOptions = new BuildPlayerOptions();
         buildPlayerOptions.scenes = new[] { "Assets/Scenes/SampleScene.unity" };
