@@ -105,7 +105,7 @@ public class GameBuilder : MonoBehaviour
     public static void PerformAndroidAABBuild()
     {
         // Ensure the Android platform is set
-        EditorUserBuildSettings.SwitchActiveBuildTarget(BuildTargetGroup.Android, BuildTarget.Android);
+        //EditorUserBuildSettings.SwitchActiveBuildTarget(BuildTargetGroup.Android, BuildTarget.Android);
 
         // Fix for incompatible color space with graphics API
         //PlayerSettings.colorSpace = ColorSpace.Gamma;
