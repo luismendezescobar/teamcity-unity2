@@ -77,7 +77,7 @@ public class GameBuilder : MonoBehaviour
     {
         BuildPlayerOptions buildPlayerOptions = new BuildPlayerOptions();
         buildPlayerOptions.scenes = new[] { "Assets/Scenes/SampleScene.unity" };
-        buildPlayerOptions.locationPathName = "build/Android/jump-game.apk";
+        buildPlayerOptions.locationPathName = "build/Android1/jump-game.apk";
         buildPlayerOptions.target = BuildTarget.Android;
         buildPlayerOptions.options = BuildOptions.None;
 
@@ -100,7 +100,7 @@ public class GameBuilder : MonoBehaviour
     {
         BuildPlayerOptions buildPlayerOptions = new BuildPlayerOptions();
         buildPlayerOptions.scenes = new[] { "Assets/Scenes/SampleScene.unity" };
-        buildPlayerOptions.locationPathName = "build/Android/jump-game.aab";
+        buildPlayerOptions.locationPathName = "build/Android2/jump-game.aab";
         buildPlayerOptions.target = BuildTarget.Android;
         buildPlayerOptions.options = BuildOptions.None;
 
