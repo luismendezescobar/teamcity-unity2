@@ -72,7 +72,7 @@ public class GameBuilder : MonoBehaviour
         }
     }
 
-    [MenuItem("Build/Build Android")]
+    [MenuItem("Build/Build Android apk")]
     public static void PerformAndroidBuildApk()
     {
         BuildPlayerOptions buildPlayerOptions = new BuildPlayerOptions();
@@ -94,7 +94,8 @@ public class GameBuilder : MonoBehaviour
             Debug.Log("Build failed");
         }
     }
-   [MenuItem("Build/Build Android")]
+
+   [MenuItem("Build/Build Android aab")]
     public static void PerformAndroidBuildAab()
     {
         BuildPlayerOptions buildPlayerOptions = new BuildPlayerOptions();
