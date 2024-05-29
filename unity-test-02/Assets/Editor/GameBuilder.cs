@@ -101,5 +101,38 @@ public class GameBuilder : MonoBehaviour
             Debug.Log("Build failed");
         }
     }
+    [MenuItem("Build/Build Android AAB")]
+    public static void PerformAndroidAABBuild()
+    {
+        // Ensure the Android platform is set
+        EditorUserBuildSettings.SwitchActiveBuildTarget(BuildTargetGroup.Android, BuildTarget.Android);
+
+        // Fix for incompatible color space with graphics API
+        PlayerSettings.colorSpace = ColorSpace.Gamma;
+        PlayerSettings.SetUseDefaultGraphicsAPIs(BuildTarget.Android, false);
+        PlayerSettings.SetGraphicsAPIs(BuildTarget.Android, new[] { GraphicsDeviceType.OpenGLES3 });
+
+        BuildPlayerOptions buildPlayerOptions = new BuildPlayerOptions();
+        buildPlayerOptions.scenes = new[] { "Assets/Scenes/SampleScene.unity" };
+        buildPlayerOptions.locationPathName = "build/AndroidAab/jump-game.aab";
+        buildPlayerOptions.target = BuildTarget.Android;
+        buildPlayerOptions.options = BuildOptions.None;
+
+        // Set to build AAB
+        EditorUserBuildSettings.buildAppBundle = true;
+
+        BuildReport report = BuildPipeline.BuildPlayer(buildPlayerOptions);
+        BuildSummary summary = report.summary;
+
+        if (summary.result == BuildResult.Succeeded)
+        {
+            Debug.Log("Build succeeded: " + summary.totalSize + " bytes");
+        }
+
+        if (summary.result == BuildResult.Failed)
+        {
+            Debug.Log("Build failed");
+        }
+    }    
 
 }
