@@ -99,14 +99,6 @@ public class GameBuilder : MonoBehaviour
     [MenuItem("Build/Build Android AAB")]
     public static void PerformAndroidAABBuild()
     {
-        // Ensure the Android platform is set
-        //EditorUserBuildSettings.SwitchActiveBuildTarget(BuildTargetGroup.Android, BuildTarget.Android);
-
-        // Fix for incompatible color space with graphics API
-        //PlayerSettings.colorSpace = ColorSpace.Gamma;
-        //PlayerSettings.SetUseDefaultGraphicsAPIs(BuildTarget.Android, false);
-        //PlayerSettings.SetGraphicsAPIs(BuildTarget.Android, new[] { GraphicsDeviceType.OpenGLES3 });
-
         BuildPlayerOptions buildPlayerOptions = new BuildPlayerOptions();
         buildPlayerOptions.scenes = new[] { "Assets/Scenes/SampleScene.unity" };
         buildPlayerOptions.locationPathName = "build/AndroidAab/jump-game.aab";
@@ -128,6 +120,43 @@ public class GameBuilder : MonoBehaviour
         {
             Debug.Log("Build failed");
         }
-    }    
+    }   
+    [MenuItem("Build/Build Android Project")]
+    public static void PerformAndroidProjectBuild()
+    {
+        // Ensure the Android platform is set
+        EditorUserBuildSettings.SwitchActiveBuildTarget(BuildTargetGroup.Android, BuildTarget.Android);
+
+        // Clean the build path
+        string buildPath = "build/AndroidProject";
+        if (System.IO.Directory.Exists(buildPath))
+        {
+            System.IO.Directory.Delete(buildPath, true);
+        }
+
+        // Ensure the build path is created
+        System.IO.Directory.CreateDirectory(buildPath);
+
+        // Create build player options
+        BuildPlayerOptions buildPlayerOptions = new BuildPlayerOptions();
+        buildPlayerOptions.scenes = new[] { "Assets/Scenes/SampleScene.unity" };
+        buildPlayerOptions.locationPathName = buildPath; // Set to directory for the Android project
+        buildPlayerOptions.target = BuildTarget.Android;
+        buildPlayerOptions.options = BuildOptions.AcceptExternalModificationsToPlayer; // Option to generate project
+
+        // Perform the build
+        BuildReport report = BuildPipeline.BuildPlayer(buildPlayerOptions);
+        BuildSummary summary = report.summary;
+
+        if (summary.result == BuildResult.Succeeded)
+        {
+            Debug.Log("Build succeeded: " + summary.totalSize + " bytes");
+        }
+
+        if (summary.result == BuildResult.Failed)
+        {
+            Debug.Log("Build failed");
+        }
+    }     
 
 }
