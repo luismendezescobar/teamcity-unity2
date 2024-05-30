@@ -125,6 +125,7 @@ public class GameBuilder : MonoBehaviour
     [MenuItem("Build/Build Android Project")]
     public static void PerformAndroidProjectBuild()
     {
+       try{
         BuildPlayerOptions buildPlayerOptions = new BuildPlayerOptions();
         buildPlayerOptions.scenes = new[] { "Assets/Scenes/SampleScene.unity" };
         buildPlayerOptions.locationPathName = "build/AndroidProject";
@@ -142,6 +143,11 @@ public class GameBuilder : MonoBehaviour
         if (summary.result == BuildResult.Failed)
         {
             Debug.Log("Build failed");
+        }
+       }
+        catch (System.Exception e)
+        {
+            Debug.LogError("Build failed with exception: " + e.Message);
         }
     }   
 
