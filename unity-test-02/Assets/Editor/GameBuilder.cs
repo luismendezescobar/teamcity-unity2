@@ -1,7 +1,7 @@
 using UnityEditor;
 using UnityEngine;
 using UnityEditor.Build.Reporting;
-using UnityEngine.Rendering; 
+
 
 public class GameBuilder : MonoBehaviour
 {
@@ -77,16 +77,11 @@ public class GameBuilder : MonoBehaviour
     public static void PerformAndroidBuild()
     {
 
-          // Fix for incompatible color space with graphics API
-        //PlayerSettings.colorSpace = ColorSpace.Gamma;
-        //PlayerSettings.SetUseDefaultGraphicsAPIs(BuildTarget.Android, false);
-        //PlayerSettings.SetGraphicsAPIs(BuildTarget.Android, new[] { GraphicsDeviceType.OpenGLES3 });
-
         BuildPlayerOptions buildPlayerOptions = new BuildPlayerOptions();
         buildPlayerOptions.scenes = new[] { "Assets/Scenes/SampleScene.unity" };
         buildPlayerOptions.locationPathName = "build/Android/jump-game.apk";
         buildPlayerOptions.target = BuildTarget.Android;
-        buildPlayerOptions.options = BuildOptions.None;
+        buildPlayerOptions.options = BuildOptions.CleanBuildCache;
 
         BuildReport report = BuildPipeline.BuildPlayer(buildPlayerOptions);
         BuildSummary summary = report.summary;
