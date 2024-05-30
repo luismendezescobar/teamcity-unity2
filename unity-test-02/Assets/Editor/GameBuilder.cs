@@ -148,6 +148,7 @@ public class GameBuilder : MonoBehaviour
         catch (System.Exception e)
         {
             Debug.LogError("Build failed with exception: " + e.Message);
+            print("Build failed with exception: " + e.Message);
         }
     }   
 
