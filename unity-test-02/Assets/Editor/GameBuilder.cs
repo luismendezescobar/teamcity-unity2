@@ -121,30 +121,16 @@ public class GameBuilder : MonoBehaviour
             Debug.Log("Build failed");
         }
     }   
+   
     [MenuItem("Build/Build Android Project")]
     public static void PerformAndroidProjectBuild()
     {
-        // Ensure the Android platform is set
-        EditorUserBuildSettings.SwitchActiveBuildTarget(BuildTargetGroup.Android, BuildTarget.Android);
-
-        // Clean the build path
-        string buildPath = "build/AndroidProject";
-        if (System.IO.Directory.Exists(buildPath))
-        {
-            System.IO.Directory.Delete(buildPath, true);
-        }
-
-        // Ensure the build path is created
-        System.IO.Directory.CreateDirectory(buildPath);
-
-        // Create build player options
         BuildPlayerOptions buildPlayerOptions = new BuildPlayerOptions();
         buildPlayerOptions.scenes = new[] { "Assets/Scenes/SampleScene.unity" };
-        buildPlayerOptions.locationPathName = buildPath; // Set to directory for the Android project
+        buildPlayerOptions.locationPathName = "build/AndroidProject";
         buildPlayerOptions.target = BuildTarget.Android;
         buildPlayerOptions.options = BuildOptions.AcceptExternalModificationsToPlayer; // Option to generate project
 
-        // Perform the build
         BuildReport report = BuildPipeline.BuildPlayer(buildPlayerOptions);
         BuildSummary summary = report.summary;
 
@@ -157,6 +143,6 @@ public class GameBuilder : MonoBehaviour
         {
             Debug.Log("Build failed");
         }
-    }     
+    }   
 
 }
