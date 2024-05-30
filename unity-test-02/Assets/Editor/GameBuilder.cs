@@ -12,7 +12,7 @@ public class GameBuilder : MonoBehaviour
         buildPlayerOptions.scenes = new[] { "Assets/Scenes/SampleScene.unity" };
         buildPlayerOptions.locationPathName = "build/macOS/jump-game.app" ;
         buildPlayerOptions.target = BuildTarget.StandaloneOSX;
-        buildPlayerOptions.options = BuildOptions.None;
+        buildPlayerOptions.options = BuildOptions.CleanBuildCache;
 
         BuildReport report = BuildPipeline.BuildPlayer(buildPlayerOptions);
         BuildSummary summary = report.summary;
@@ -35,7 +35,7 @@ public class GameBuilder : MonoBehaviour
         buildPlayerOptions.scenes = new[] { "Assets/Scenes/SampleScene.unity" };
         buildPlayerOptions.locationPathName = "build/WebGL";
         buildPlayerOptions.target = BuildTarget.WebGL;
-        buildPlayerOptions.options = BuildOptions.None;
+        buildPlayerOptions.options = BuildOptions.CleanBuildCache;
 
         BuildReport report = BuildPipeline.BuildPlayer(buildPlayerOptions);
         BuildSummary summary = report.summary;
@@ -57,7 +57,7 @@ public class GameBuilder : MonoBehaviour
         buildPlayerOptions.scenes = new[] { "Assets/Scenes/SampleScene.unity" };
         buildPlayerOptions.locationPathName = "build/iOS";
         buildPlayerOptions.target = BuildTarget.iOS;
-        buildPlayerOptions.options = BuildOptions.None;
+        buildPlayerOptions.options = BuildOptions.CleanBuildCache;
 
         BuildReport report = BuildPipeline.BuildPlayer(buildPlayerOptions);
         BuildSummary summary = report.summary;
@@ -111,7 +111,7 @@ public class GameBuilder : MonoBehaviour
         buildPlayerOptions.scenes = new[] { "Assets/Scenes/SampleScene.unity" };
         buildPlayerOptions.locationPathName = "build/AndroidAab/jump-game.aab";
         buildPlayerOptions.target = BuildTarget.Android;
-        buildPlayerOptions.options = BuildOptions.None;
+        buildPlayerOptions.options = BuildOptions.CleanBuildCache;
 
         // Set to build AAB
         EditorUserBuildSettings.buildAppBundle = true;
