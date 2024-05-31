@@ -2,7 +2,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEditor.Build.Reporting;
 using System;
-
+using System.IO;
 
 public class GameBuilder : MonoBehaviour
 {
@@ -170,9 +170,20 @@ public class GameBuilder : MonoBehaviour
     public static void PerformAndroidProjectBuild()
     {
        try{
+        // Clean the build path
+        string buildPath = "build/AndroidProject";
+        if (Directory.Exists(buildPath))
+        {
+            Directory.Delete(buildPath, true);
+        }
+
+        // Ensure the build path is created
+        Directory.CreateDirectory(buildPath);
+        
+        //here continues the usual code
         BuildPlayerOptions buildPlayerOptions = new BuildPlayerOptions();
         buildPlayerOptions.scenes = new[] { "Assets/Scenes/SampleScene.unity" };
-        buildPlayerOptions.locationPathName = "build/AndroidProject";
+        buildPlayerOptions.locationPathName = buildPath;
         buildPlayerOptions.target = BuildTarget.Android;
         buildPlayerOptions.options = BuildOptions.AcceptExternalModificationsToPlayer; // Option to generate project
 
@@ -191,7 +202,7 @@ public class GameBuilder : MonoBehaviour
        }
         catch (System.Exception e)
         {
-            Debug.LogError("Build failed with exception: " + e.Message);
+            Debug.LogError("Luis Build failed with exception: " + e.Message);
             print("Build failed with exception: " + e.Message);
         }
     }   
