@@ -1,6 +1,7 @@
 using UnityEditor;
 using UnityEngine;
 using UnityEditor.Build.Reporting;
+using System;
 
 
 public class GameBuilder : MonoBehaviour
@@ -76,7 +77,28 @@ public class GameBuilder : MonoBehaviour
     [MenuItem("Build/Build Android")]
     public static void PerformAndroidBuild()
     {
+        // Read command line arguments for version and bundle version code
+        string version = GetCommandLineArg("-version");
+        string bundleVersionCodeStr = GetCommandLineArg("-bundleVersionCode");
+        string packageName = GetCommandLineArg("-packageName");
 
+        if (string.IsNullOrEmpty(version) || string.IsNullOrEmpty(bundleVersionCodeStr))
+        {
+            Debug.LogError("Version or Bundle Version Code not specified!");
+            return;
+        }
+
+        if (!int.TryParse(bundleVersionCodeStr, out int bundleVersionCode))
+        {
+            Debug.LogError("Invalid Bundle Version Code!");
+            return;
+        }
+        // Set version and bundle version code
+        PlayerSettings.bundleVersion = version;
+        PlayerSettings.Android.bundleVersionCode = bundleVersionCode;
+        PlayerSettings.applicationIdentifier = packageName;
+
+        //here continues the normal code
         BuildPlayerOptions buildPlayerOptions = new BuildPlayerOptions();
         buildPlayerOptions.scenes = new[] { "Assets/Scenes/SampleScene.unity" };
         buildPlayerOptions.locationPathName = "build/Android/jump-game.apk";
@@ -99,12 +121,34 @@ public class GameBuilder : MonoBehaviour
     [MenuItem("Build/Build Android AAB")]
     public static void PerformAndroidAABBuild()
     {
+        // Read command line arguments for version and bundle version code
+        string version = GetCommandLineArg("-version");
+        string bundleVersionCodeStr = GetCommandLineArg("-bundleVersionCode");
+        string packageName = GetCommandLineArg("-packageName");
+
+        if (string.IsNullOrEmpty(version) || string.IsNullOrEmpty(bundleVersionCodeStr))
+        {
+            Debug.LogError("Version or Bundle Version Code not specified!");
+            return;
+        }
+
+        if (!int.TryParse(bundleVersionCodeStr, out int bundleVersionCode))
+        {
+            Debug.LogError("Invalid Bundle Version Code!");
+            return;
+        }
+        // Set version and bundle version code
+        PlayerSettings.bundleVersion = version;
+        PlayerSettings.Android.bundleVersionCode = bundleVersionCode;
+        PlayerSettings.applicationIdentifier = packageName;
+
+        //here continues the normal code
         BuildPlayerOptions buildPlayerOptions = new BuildPlayerOptions();
         buildPlayerOptions.scenes = new[] { "Assets/Scenes/SampleScene.unity" };
         buildPlayerOptions.locationPathName = "build/AndroidAab/jump-game.aab";
         buildPlayerOptions.target = BuildTarget.Android;
         buildPlayerOptions.options = BuildOptions.CleanBuildCache;
-
+        
         // Set to build AAB
         EditorUserBuildSettings.buildAppBundle = true;
 
@@ -151,5 +195,18 @@ public class GameBuilder : MonoBehaviour
             print("Build failed with exception: " + e.Message);
         }
     }   
+    private static string GetCommandLineArg(string name)
+    {
+        var args = Environment.GetCommandLineArgs();
+        for (int i = 0; i < args.Length; i++)
+        {
+            if (args[i] == name && args.Length > i + 1)
+            {
+                return args[i + 1];
+            }
+        }
+        return null;
+    }
+
 
 }
