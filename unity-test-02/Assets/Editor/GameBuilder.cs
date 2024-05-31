@@ -177,10 +177,7 @@ public class GameBuilder : MonoBehaviour
             Directory.Delete(buildPath, true);
         }
 
-        // Ensure the build path is created
-        Directory.CreateDirectory(buildPath);
-        
-        //here continues the usual code
+       //here continues the usual code
         BuildPlayerOptions buildPlayerOptions = new BuildPlayerOptions();
         buildPlayerOptions.scenes = new[] { "Assets/Scenes/SampleScene.unity" };
         buildPlayerOptions.locationPathName = buildPath;
