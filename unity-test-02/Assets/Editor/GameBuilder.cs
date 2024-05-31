@@ -182,7 +182,9 @@ public class GameBuilder : MonoBehaviour
         buildPlayerOptions.scenes = new[] { "Assets/Scenes/SampleScene.unity" };
         buildPlayerOptions.locationPathName = buildPath;
         buildPlayerOptions.target = BuildTarget.Android;
-        buildPlayerOptions.options = BuildOptions.AcceptExternalModificationsToPlayer; // Option to generate project
+        //buildPlayerOptions.options = BuildOptions.AcceptExternalModificationsToPlayer; // Option to generate project
+        buildPlayerOptions.options = BuildOptions.AllowDebugging;
+        EditorUserBuildSettings.exportAsGoogleAndroidProject = true;
 
         BuildReport report = BuildPipeline.BuildPlayer(buildPlayerOptions);
         BuildSummary summary = report.summary;
