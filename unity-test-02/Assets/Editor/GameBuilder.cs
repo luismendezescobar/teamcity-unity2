@@ -147,7 +147,7 @@ public class GameBuilder : MonoBehaviour
         buildPlayerOptions.scenes = new[] { "Assets/Scenes/SampleScene.unity" };
         buildPlayerOptions.locationPathName = "build/AndroidAab/jump-game.aab";
         buildPlayerOptions.target = BuildTarget.Android;
-        buildPlayerOptions.options = BuildOptions.CleanBuildCache;
+        buildPlayerOptions.options = BuildOptions.CleanBuildCache | BuildOptions.AllowDebugging;
         
         // Set to build AAB
         EditorUserBuildSettings.buildAppBundle = true;
