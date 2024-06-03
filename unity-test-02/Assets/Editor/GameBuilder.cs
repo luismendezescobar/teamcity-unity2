@@ -185,6 +185,9 @@ public class GameBuilder : MonoBehaviour
         //buildPlayerOptions.options = BuildOptions.AcceptExternalModificationsToPlayer; // Option to generate project
         buildPlayerOptions.options = BuildOptions.AllowDebugging;
         EditorUserBuildSettings.exportAsGoogleAndroidProject = true;
+        // Set to build AAB
+        EditorUserBuildSettings.buildAppBundle = true;
+
 
         BuildReport report = BuildPipeline.BuildPlayer(buildPlayerOptions);
         BuildSummary summary = report.summary;
@@ -217,6 +220,13 @@ public class GameBuilder : MonoBehaviour
         }
         return null;
     }
+
+
+
+
+
+
+
 
 
 }
